@@ -6,7 +6,7 @@ import {checkGameStatus} from "./utils.js";
  */
 let currentTurn = TURN.CROSS;
 let isGameEnded = false;
-let gameStatuses = GAME_STATUS.PLAYING;
+let gameStatus = GAME_STATUS.PLAYING;
 let cellValues = new Array(9).fill("");
 /* console.log(checkGameStatus(["X", "O", "X", "O", "O", "X", "O", "O", "X"]))
 console.log(checkGameStatus(["X", "O", "X", "", "", "X", "O", "", ""]))
@@ -56,28 +56,21 @@ function highlightElementWin(winPositions) {
 
 
 function handleEventClick(cell, index){
-    //update values 
-   /*  cellValues[index] = currentTurn === TURN.CIRCLE ? CELL_VALUE.CIRCLE : CELL_VALUE.CROSS;
-
-    console.log(cellValues) */
-    //check game status 
     const games = checkGameStatus(cellValues)
-
     const isFinish = cell.classList.contains(TURN.CROSS) || cell.classList.contains(TURN.CIRCLE);
-    const isEndGame =  gameStatuses !== games.status;
+    const isEndGame =  gameStatus !== games.status;
     
     if(isFinish || isEndGame) return ;
     
     
     cell.classList.add(currentTurn)
-
-
+    
+    
     //update values 
     cellValues[index] = currentTurn === TURN.CIRCLE ? CELL_VALUE.CIRCLE : CELL_VALUE.CROSS;
-
+    const game = checkGameStatus(cellValues)
 
     //check game status 
-    const game = checkGameStatus(cellValues)
 
     switch (game.status) {
         case GAME_STATUS.ENDED: {
