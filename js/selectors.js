@@ -10,9 +10,13 @@ export function getCurrentTurnElement() {
    return document.getElementById('currentTurn');
 }
 export function getCellElementAtIdx(index) {
-    return document.querySelector(`ul > li:nth:child(${index + 1})`);
+    return document.querySelector(`#cellList > li:nth-child(${index + 1})`);
 }
-export function getGameStatusElement() {
+export function getGameStatusPosition() {
    return document.getElementById('gameStatus');
 
 }
+export function getButtonReplace(){
+    return document.getElementById('replayGame');
+}
+
